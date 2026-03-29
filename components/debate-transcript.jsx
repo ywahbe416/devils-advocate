@@ -1,5 +1,9 @@
 import Link from "next/link";
 
+function formatScoreValue(value) {
+  return value == null ? "N/A" : `${value}/10`;
+}
+
 export default function DebateTranscript({ debate }) {
   return (
     <main className="page-shell">
@@ -26,9 +30,9 @@ export default function DebateTranscript({ debate }) {
               {message.role === "user" && message.score ? (
                 <div className="score-card">
                   <div className="score-grid">
-                    <span>Logic: {message.score.logic ?? "-"}/10</span>
-                    <span>Evidence: {message.score.evidence ?? "-"}/10</span>
-                    <span>Clarity: {message.score.clarity ?? "-"}/10</span>
+                    <span>Logic: {formatScoreValue(message.score.logic)}</span>
+                    <span>Evidence: {formatScoreValue(message.score.evidence)}</span>
+                    <span>Clarity: {formatScoreValue(message.score.clarity)}</span>
                   </div>
                   <p>{message.score.feedback}</p>
                 </div>
